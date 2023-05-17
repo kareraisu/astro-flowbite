@@ -1,7 +1,9 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro/config'
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import UnoCSS from 'unocss/astro';
 
 const DEV_PORT = 2121;
 
@@ -26,5 +28,6 @@ export default defineConfig({
 		//
 		sitemap(),
 		tailwind(),
+		UnoCSS()
 	],
 });
