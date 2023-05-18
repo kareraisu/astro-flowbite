@@ -2,9 +2,16 @@
 import Icon from './Icon.astro'
 ---
 
-<footer>
+<footer id="main-footer" bg="orange" p="2">
 	<p>
 		Powered by <a href="https://astro.build/">Astro</a>
-		<Icon icon="rocket-launch" size="1.2em" />
+		<Icon icon="rocket-launch" size="1.2em" inline />
 	</p>
 </footer>
+
+<style>
+	footer {
+		display: flex;
+		justify-content: center;
+	}
+</style>

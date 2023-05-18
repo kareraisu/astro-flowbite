@@ -7,9 +7,10 @@ export interface Props {
 	color?: string
 	gradient?: boolean
 	size?: string
+	inline?: boolean
 }
 
-const { color = 'currentcolor', gradient, icon, size } = Astro.props
+const { color = 'currentcolor', gradient, icon, size, inline } = Astro.props
 const iconPath = iconPaths[icon]
 
 const attrs: HTMLAttributes<'svg'> = {}
@@ -27,6 +28,7 @@ const gradientId =
 	aria-hidden="true"
 	stroke={gradient ? `url(#${gradientId})` : color}
 	fill={gradient ? `url(#${gradientId})` : color}
+	class={inline ? 'display-inline' : ''}
 	{...attrs}
 >
 	<g set:html={iconPath} />

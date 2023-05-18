@@ -2,6 +2,8 @@
 // Learn about using Astro layouts:
 // https://docs.astro.build/en/core-concepts/layouts/
 
+import '../global.css'
+
 // Component Imports
 import MainHead from '../components/MainHead.astro'
 import Nav from '../components/Nav.astro'
@@ -19,12 +21,13 @@ const { title, description } = Astro.props
 	<head>
 		<MainHead title={title} description={description} />
 	</head>
+
 	<body>
-		<div>
-			<Nav />
+		<Nav />
+		<div id="main-content">
 			<slot />
-			<Footer />
 		</div>
+		<Footer />
 
 		<script>
 			// Add “loaded” class once the document has completely loaded.
@@ -32,5 +35,32 @@ const { title, description } = Astro.props
 				document.documentElement.classList.add('loaded'),
 			)
 		</script>
+		<style is:global>
+			body {
+				display: grid;
+				gap: 1rem;
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-rows: var(--navbar-height) auto var(--footer-height);
+				grid-template-areas:
+					'nav nav nav'
+					'main main main'
+					'footer footer footer';
+				min-height: 100vh;
+			}
+
+			#main-nav {
+				grid-area: nav;
+			}
+			#main-content {
+				grid-area: main;
+				width: 100vw;
+				max-width: 1400px;
+				justify-self: center;
+				padding: 2rem;
+			}
+			#main-footer {
+				grid-area: footer;
+			}
+		</style>
 	</body>
 </html>
